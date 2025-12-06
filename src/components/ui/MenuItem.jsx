@@ -1,7 +1,7 @@
 import { HiHome, HiUser, HiCog } from "react-icons/hi";
 
 export const menuItem = [
-    { id: 1, path: "/", label: "Home", icon: <HiHome className="text-xl" /> },
+    { id: 1, path: "/dashboard", label: "Home", icon: <HiHome className="text-xl" /> },
     {
       id: 2,
       path: "/profile",

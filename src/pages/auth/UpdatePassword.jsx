@@ -16,11 +16,15 @@ const UpdatePassword = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-[#707070] px-4">
-      <div className="bg-white p-6 rounded-2xl shadow-lg w-full max-w-md">
+    <div className="flex items-center justify-center min-h-screen bg-bgClr px-4">
+      <div className="authContainer">
          {/* logo section  */}
-        <div className="flex justify-center mb-6">
-          <img src={Icons.navLogo} alt="logo" />
+      <div className="flex justify-center mb-10.5">
+          <img
+            src={Icons.navLogo}
+            alt="logo"
+            className="w-[130px] h-[130px] rounded-3xl"
+          />
         </div>
 
         <div className="flex justify-center mb-4">

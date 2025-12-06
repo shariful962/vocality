@@ -127,25 +127,29 @@ const handlePaste = (e, index) => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-[#707070] px-4">
-      <div className="bg-white p-6 rounded-2xl shadow-lg w-full max-w-md">
+    <div className="flex items-center justify-center min-h-screen bg-bgClr px-4">
+      <div className="authContainer">
         {/* logo */}
-        <div className="flex justify-center mb-6">
-          <img src={Icons.navLogo} alt="logo" />
+       <div className="flex justify-center mb-6">
+          <img
+            src={Icons.navLogo}
+            alt="logo"
+            className="w-[130px] h-[130px] rounded-3xl"
+          />
         </div>
 
         {/* title + back */}
         <div className="flex justify-center mb-4">
           <div className="flex items-center gap-x-3">
-            <button onClick={() => navigate("/forgotpassword")} className="text-[#1F1D1D] cursor-pointer">
+            <button onClick={() => navigate("/forgotpassword")} className="text-dark2 cursor-pointer">
               <IoArrowBack size={22} />
             </button>
-            <h2 className="text-2xl font-medium text-[#1F1D1D]">Verify Email</h2>
+            <h2 className="text-2xl font-semibold text-dark2">Verify Email</h2>
           </div>
         </div>
 
-        <p className="text-textClr mb-6 text-center">
-          Please enter the OTP we have sent you in your email.
+        <p className="authDesc">
+          Enter the 6-digit code sent to your email.
         </p>
 
         <form onSubmit={handleVerify} className="space-y-6">
@@ -174,7 +178,7 @@ const handlePaste = (e, index) => {
             : "bg-Primary/50 text-white cursor-not-allowed"
         }`}
         disabled={!otp.every((e) => e.trim() !== "")}>
-            Verify OTP
+            Verify 
           </button>
         </form>
       </div>
