@@ -7,12 +7,39 @@ import { FiEye, FiEyeOff } from "react-icons/fi";
 const UpdatePassword = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("")
+  const [formData, setFormData] = useState({
+    password: "",
+    confirmPassword: ""
+  })
   const navigate = useNavigate();
+
+  const handleChange = (e)=> {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+    setErrorMsg("");
+  }
 
   const handleReset = (e) => {
     e.preventDefault();
+     const { password, confirmPassword } = formData;
+
+    if (!password || !confirmPassword) {
+      setErrorMsg("Please fill in both fields");
+      return;
+    }
+
+
+    if (password !== confirmPassword) {
+      setErrorMsg("Passwords do not match");
+      return;
+    }
+
     alert("Password reset successful!");
-    navigate("/"); // redirect to sign in
+    navigate("/");
+  
   };
 
   return (
@@ -31,32 +58,35 @@ const UpdatePassword = () => {
           <div className="flex items-center gap-x-3">
             <button
               onClick={() => navigate("/otp")}
-              className="text-[#1F1D1D] cursor-pointer"
+              className="text-dark2 cursor-pointer"
             >
               <IoArrowBack size={22} />
             </button>
-            <h2 className="text-2xl font-medium text-[#1F1D1D]">
-              Reset Password
+            <h2 className="text-2xl font-medium text-dark2">
+              Create New Password
             </h2>
           </div>
         </div>
 
-        <p className="text-textClr mb-6 text-center">
-          Your password must be 8-10 character long.
+        <p className="authDesc">
+          Your new password must be different from previous passwords.
         </p>
 
         <form onSubmit={handleReset}>
           <div className="relative">
-            {/* <label className="block text-gray-700 text-sm mb-1">
+            <label className="label-control">
               New Password
-            </label> */}
+            </label>
             <input
               type={showPassword ? "text" : "password"}
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
               placeholder="Enter new password"
               className="form-control mb-6"
             />
             <span
-              className="absolute right-3 top-4.5 cursor-pointer text-gray-500"
+              className="absolute right-3 top-10 cursor-pointer text-gray-500"
               onClick={() => setShowPassword(!showPassword)}
             >
               {showPassword ? <FiEyeOff /> : <FiEye/>}
@@ -64,16 +94,19 @@ const UpdatePassword = () => {
           </div>
 
           <div className="relative">
-            {/* <label className="block text-gray-700 text-sm mb-1">
+            <label className="label-control">
               Confirm Password
-            </label> */}
+            </label>
             <input
               type={showConfirm ? "text" : "password"}
+              name="confirmPassword"
+              value={formData.confirmPassword}
+              onChange={handleChange}
               placeholder="Confirm new password"
               className="form-control"
             />
             <span
-              className="absolute right-3 top-4.5 cursor-pointer text-gray-500"
+              className="absolute right-3 top-10 cursor-pointer text-gray-500"
               onClick={() => setShowConfirm(!showConfirm)}
             >
               {showConfirm ? <FiEyeOff /> : <FiEye />}
@@ -86,6 +119,9 @@ const UpdatePassword = () => {
           >
             Reset Password
           </button>
+           {errorMsg && (
+            <p className="text-red-500 text-sm mt-[-10px]">{errorMsg}</p>
+          )}
         </form>
       </div>
     </div>
