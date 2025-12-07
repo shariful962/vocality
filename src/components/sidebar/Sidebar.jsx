@@ -131,12 +131,14 @@ const Sidebar = ({ collapsed, mobileOpen, setMobileOpen }) => {
             collapsed ? "px-2" : "px-4"
           }`}
         >
-          <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-gray-200">
+          <div className="flex items-center gap-x-3">
             <img
               src="https://i.pravatar.cc/150?img=12"
               alt="Profile"
-              className="w-full h-full object-cover"
+              className="w-14 h-14 rounded-full overflow-hidden border-2 border-gray-200"
             />
+            {!collapsed && <p>ByeWind</p>}
+            {/* <p className="md:hidden">ByeWind</p> */}
           </div>
         </div>
 
