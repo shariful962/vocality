@@ -1,36 +1,49 @@
 import { createBrowserRouter } from "react-router-dom";
 import DashboardLayout from "./layout/DashboardLayout";
-import Home from "./pages/Home";
-import Profile from "./pages/Profile";
-import Settings from "./pages/Settings";
 import AuthLayout from "./layout/AuthLayout";
 import Signin from "./pages/auth/Signin";
 import ForgotPassword from "./pages/auth/ForgotPassword";
 import OTP from "./pages/auth/OTP";
 import UpdatePassword from "./pages/auth/UpdatePassword";
 import Error from "./pages/Error";
+import Earnings from "./pages/earnings/Earnings";
+import Users from "./pages/users/Users";
+import PersonalityManagement from "./pages/personality management/PersonalityManagement";
+import TimeManagement from "./pages/time management/TimeManagement";
+import PlanManagement from "./pages/plan management/PlanManagement";
+import AiConfiguration from "./pages/Ai configuration/AiConfiguration";
+import Settings from "./pages/settings/Settings";
+import Overview from "./pages/overview/Overview";
+import Profile from "./pages/profile/Profile";
+import ChangePass from "./pages/change password/ChangePass";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <AuthLayout/>,
-    errorElement: <Error/>,
+    element: <AuthLayout />,
+    errorElement: <Error />,
     children: [
       { index: true, element: <Signin /> },
       { path: "forgotpassword", element: <ForgotPassword /> },
       { path: "otp", element: <OTP /> },
-      { path: "resetpassword", element: <UpdatePassword/>}
+      { path: "resetpassword", element: <UpdatePassword /> },
     ],
   },
   {
-    element: <DashboardLayout/>,
+    element: <DashboardLayout />,
     children: [
-      {path: "dashboard", element: <Home/> },
-      {path: "profile", element: <Profile/> },
-      {path: "settings", element: <Settings/> }
-    ]
-  }
- 
+      { path: "dashboard", element: <Overview /> },
+      { path: "earning", element: <Earnings /> },
+      { path: "users", element: <Users /> },
+      { path: "personality", element: <PersonalityManagement /> },
+      { path: "time", element: <TimeManagement /> },
+      { path: "plan", element: <PlanManagement /> },
+      { path: "configuration", element: <AiConfiguration /> },
+      { path: "settings", element: <Settings /> },
+      { path: "settings/profile", element: <Profile /> },
+      { path: "settings/changepassword", element: <ChangePass /> },
+    ],
+  },
 ]);
 
 export default router;
