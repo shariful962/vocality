@@ -21,7 +21,6 @@
   --color-GrayClr1: #D5D5D5;
   --color-Primary: #FFC300;
   --color-textClr: #575757;
-  --font-Poppins: 'Poppins', sans-serif;
   --shadow-custom: 0px 2px 8px 0px rgba(0, 0, 0, 0.10);
 }
 
@@ -52,6 +51,9 @@
 
 .form-control {
   @apply w-full border border-[#E0E0E0] rounded px-3 py-3 outline-none ;
+}
+.form-control1 {
+  @apply w-full border border-Primary rounded px-3 py-3 outline-none ;
 }
 
 /* .form-control {
