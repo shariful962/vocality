@@ -16,7 +16,7 @@ const Profile = () => {
     name: "ByeWind",
     email: "byewind1245@gmail.com",
     phone: "+8801744663950",
-    profilePic: "", // Added profile picture URL
+    profilePic: "https://i.pravatar.cc/150?img=12", // Added profile picture URL
   });
   const [image, setImage] = useState(null);
 
@@ -52,7 +52,7 @@ const Profile = () => {
 
           <button
             onClick={handleEditToggle}
-            className="flex items-center gap-x-3 bg-Primary px-7 py-2.5 rounded-lg text-white w-max mt-4 md:mt-0 cursor-pointer"
+            className="flex items-center gap-x-3 bg-Primary px-7 py-2.5 rounded-lg text-[#2F2F2F] w-max mt-4 md:mt-0 cursor-pointer"
           >
             {!isEditing && <FiEdit />}
             {isEditing ? "Save Change" : "Edit Profile"}
@@ -102,7 +102,7 @@ const Profile = () => {
               <label className="label-control">Name</label>
               <input
                 type="text"
-                className="form-control"
+                className={`form-control1 ${isEditing? "border-Primary" : "border-Primary bg-gray-100"}`}
                 disabled={!isEditing}
                 value={formData.name}
                 onChange={(e) =>
@@ -116,12 +116,13 @@ const Profile = () => {
               <label className="label-control">Email</label>
               <input
                 type="email"
-                className="form-control"
+                className={`form-control1 ${isEditing? "border-Primary" : "border-Primary bg-gray-100"}`}
                 disabled={!isEditing}
                 value={formData.email}
                 onChange={(e) =>
                   setFormData({ ...formData, email: e.target.value })
                 }
+              
               />
             </div>
 
@@ -134,8 +135,8 @@ const Profile = () => {
                 disabled={!isEditing}
                 value={formData.phone}
                 onChange={(phone) => setFormData({ ...formData, phone })}
-                className={`p-2 border ${
-                  isEditing ? "border-gray-300" : "border-gray-200 bg-gray-100"
+                className={`p-3 border ${
+                  isEditing ? "border-Primary" : "border-Primary bg-gray-100"
                 } rounded`}
                 placeholder="Enter phone number"
               />
