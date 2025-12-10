@@ -1,99 +1,21 @@
-// import React from "react";
-// import { NavLink } from "react-router-dom";
-// import { menuItem } from "../ui/MenuItem";
-// import { RxCross1 } from "react-icons/rx";
-
-// const Sidebar = ({ collapsed, mobileOpen, setMobileOpen }) => {
-//   return (
-//     <>
-//       {/* Mobile Overlay */}
-//       {mobileOpen && (
-//         <div
-//           className="fixed inset-0 bg-black/50 z-40 md:hidden"
-//           onClick={() => setMobileOpen(false)}
-//         ></div>
-//       )}
-
-//       <div
-//         className={`
-//           fixed  left-0 h-full bg-white md:border-r-[.5px] md:border-black/10
-//           transition-all duration-300 z-60
-//           ${collapsed ? "md:w-20" : "md:w-74"}
-//           ${
-//             mobileOpen
-//               ? "translate-x-0 w-74"
-//               : "-translate-x-full md:translate-x-0"
-//           }
-//         `}
-//       >
-//         {/* mobile device cross button  */}
-//         <div
-//           onClick={() => setMobileOpen(false)}
-//           className=" md:hidden flex items-center justify-center bg-Primary h-8 w-8 rounded-full cursor-pointer text-white absolute top-2 right-3"
-//         >
-//           <span>
-//             <RxCross1 />
-//           </span>
-//         </div>
-//         <div
-//           className={`flex items-center justify-start py-6 ${
-//             collapsed ? "px-2" : "px-4"
-//           }`}
-//         >
-//           <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-gray-200">
-//             <img
-//               src="https://i.pravatar.cc/150?img=12"
-//               alt="Profile"
-//               className="w-full h-full object-cover"
-//             />
-//           </div>
-//         </div>
-
-//         {/* menu items  */}
-//         <ul className="mt-5 space-y-2">
-//           {menuItem.map((item) => (
-//             <li
-//               key={item.id}
-//               className={`px-2.5  ${
-//                 collapsed ? "flex items-center justify-center" : ""
-//               }`}
-//             >
-//               <NavLink
-//                 to={item.path}
-//                 className={({ isActive }) =>
-//                   `flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 ${
-//                     isActive ? "bg-dark1/5" : ""
-//                   }`
-//                 }
-//                 onClick={() => setMobileOpen(false)}
-//               >
-//                 {/* {item.icon} */} <img src={item.img} alt="" className="h-6 w-6" />
-//                 {!collapsed && <span>{item.label}</span>}
-//               </NavLink>
-//             </li>
-//           ))}
-//         </ul>
-//       </div>
-//     </>
-//   );
-// };
-
-// export default Sidebar;
-
-
-
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { menuItem } from "../ui/MenuItem";
 import { RxCross1 } from "react-icons/rx";
 import { IoChevronForwardOutline, IoChevronDownOutline } from "react-icons/io5";
+import { AiOutlineLogout } from "react-icons/ai";
 
 const Sidebar = ({ collapsed, mobileOpen, setMobileOpen }) => {
+  const navigate = useNavigate();
   const [openSettings, setOpenSettings] = useState(false);
 
   const toggleSettings = () => {
     setOpenSettings((prev) => !prev);
   };
+
+  const handleLogout = ()=>{
+    navigate("/")
+  }
 
   return (
     <>
@@ -214,10 +136,18 @@ const Sidebar = ({ collapsed, mobileOpen, setMobileOpen }) => {
             </li>
           ))}
         </ul>
+        <div className="px-4 py-3 mt-0">
+          <button
+            onClick={handleLogout}
+            className={`w-full flex items-center gap-3 px-3 py-3 rounded-lg cursor-pointer hover:bg-gray-100`}
+          >
+            <AiOutlineLogout size={22} />
+            {!collapsed && <span>Logout</span>}
+          </button>
+        </div>
       </div>
     </>
   );
 };
 
 export default Sidebar;
-

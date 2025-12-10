@@ -16,6 +16,7 @@ import Settings from "./pages/settings/Settings";
 import Overview from "./pages/overview/Overview";
 import Profile from "./pages/profile/Profile";
 import ChangePass from "./pages/change password/ChangePass";
+import EditPlan from "./pages/plan management/EditPlan";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,7 @@ const router = createBrowserRouter([
       { path: "personality", element: <PersonalityManagement /> },
       { path: "time", element: <TimeManagement /> },
       { path: "plan", element: <PlanManagement /> },
+      { path: "plan/:id", element: <EditPlan /> },
       { path: "configuration", element: <AiConfiguration /> },
       { path: "settings", element: <Settings /> },
       { path: "settings/profile", element: <Profile /> },
