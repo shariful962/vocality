@@ -1,0 +1,27 @@
+export const notification = [
+    {id:1, notification: "A new user joined your app.", time: "Fri, 12:30pm"},
+    {id:2, notification: "A new user joined your app.", time: "Fri, 12:30pm"},
+    {id:3, notification: "A new user joined your app.", time: "Fri, 12:30pm"},
+    {id:4, notification: "A new user joined your app.", time: "Fri, 12:30pm"},
+    {id:5, notification: "A new user joined your app.", time: "Fri, 12:30pm"},
+    {id:6, notification: "A new user joined your app.", time: "Fri, 12:30pm"},
+    {id:7, notification: "A new user joined your app.", time: "Fri, 12:30pm"},
+    {id:8, notification: "A new user joined your app.", time: "Fri, 12:30pm"},
+    {id:9, notification: "A new user joined your app.", time: "Fri, 12:30pm"},
+    {id:10, notification: "A new user joined your app.", time: "Fri, 12:30pm"},
+    {id:11, notification: "A new user joined your app.", time: "Fri, 12:30pm"},
+    {id:12, notification: "A new user joined your app.", time: "Fri, 12:30pm"},
+    {id:13, notification: "A new user joined your app.", time: "Fri, 12:30pm"},
+    {id:14, notification: "A new user joined your app.", time: "Fri, 12:30pm"},
+    {id:15, notification: "A new user joined your app.", time: "Fri, 12:30pm"},
+    {id:16, notification: "A new user joined your app.", time: "Fri, 12:30pm"},
+    {id:17, notification: "A new user joined your app.", time: "Fri, 12:30pm"},
+    {id:18, notification: "A new user joined your app.", time: "Fri, 12:30pm"},
+    {id:19, notification: "A new user joined your app.", time: "Fri, 12:30pm"},
+    {id:20, notification: "A new user joined your app.", time: "Fri, 12:30pm"},
+    {id:21, notification: "A new user joined your app.", time: "Fri, 12:30pm"},
+    {id:22, notification: "A new user joined your app.", time: "Fri, 12:30pm"},
+    {id:23, notification: "A new user joined your app.", time: "Fri, 12:30pm"},
+    {id:24, notification: "A new user joined your app.", time: "Fri, 12:30pm"}
+
+]

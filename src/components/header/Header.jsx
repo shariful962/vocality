@@ -1,8 +1,24 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { HiMenu } from "react-icons/hi";
 import { IoNotificationsOutline } from "react-icons/io5";
+import NotificationDropdown from "./NotificationDropdown";
+
 
  const Header = ({ collapsed, setCollapsed, setMobileOpen }) => {
+  const [openDropdown, setOpenDropdown] = useState(false);
+  const dropdownRef = useRef();
+
+  // Close dropdown on outside click
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setOpenDropdown(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   return (
     <div
       className={`fixed top-0 left-0 right-0 h-16 bg-white   flex items-center justify-between px-4 z-50 transition-all duration-300 
@@ -26,8 +42,23 @@ import { IoNotificationsOutline } from "react-icons/io5";
         <HiMenu />
       </button>
 
-      {/* Notification Icon */}
-      <IoNotificationsOutline className="text-2xl" />
+     <div className="flex gap-x-4 relative" ref={dropdownRef}>
+          {/* Notification Icon */}
+          <div
+            onClick={() => setOpenDropdown(!openDropdown)}
+            className="w-10 h-10 rounded-full border border-Secondary flex items-center justify-center cursor-pointer"
+          >
+            <IoNotificationsOutline size={24} className="text-dark1" />
+          </div>
+
+          {/* User Icon */}
+          {/* <div  className="w-10 h-10 rounded-full border border-Secondary flex items-center justify-center cursor-pointer">
+            <CiUser size={28} className="text-Secondary" />
+          </div> */}
+
+          {/* Dropdown */}
+          {openDropdown && <NotificationDropdown />}
+        </div>
     </div>
   );
 };
