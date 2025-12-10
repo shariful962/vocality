@@ -62,7 +62,7 @@ const Profile = () => {
         {/* MAIN CONTENT */}
         <div className="flex flex-col md:flex-row gap-8">
           {/* PROFILE CARD */}
-          <div className="border border-[#444444] w-[250px] h-[250px] flex items-center justify-center rounded-lg relative">
+          <div className="mt-3 border border-Primary w-[250px] h-[250px] flex items-center justify-center rounded-lg relative">
             <div className="text-center relative">
               <img
                 src={formData.profilePic}
