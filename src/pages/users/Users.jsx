@@ -3,11 +3,11 @@ import { FaSearch } from "react-icons/fa";
 import { CiCircleInfo } from "react-icons/ci";
 import { MdBlock } from "react-icons/md";
 import { CgUnblock } from "react-icons/cg";
-import UserDetails from "./UserDetails";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import { users } from "./data";
 import ConfirmationModal from "../../common/ConfirmationModal"; // Import the new modal component
+import UserDetails from "../../common/UserDetails";
 
 const Users = () => {
   const [search, setSearch] = useState("");
