@@ -1,11 +1,154 @@
-import React from 'react'
+import React, { useState, useEffect } from "react";
+import { FaSearch } from "react-icons/fa";
+import { CiCircleInfo } from "react-icons/ci";
+import Pagination from "@mui/material/Pagination";
+import Stack from "@mui/material/Stack";
+import EarningsLabel from "../../common/EarningsLabel";
+import { earningsData } from "./data";
+import EariningsDetails from "./EarningsDetails";
 
 const Earnings = () => {
-  return (
-    <div>
-      Welcome to Earnings page 
-    </div>
-  )
-}
+  const [search, setSearch] = useState("");
+  const [selectedUser, setSelectedUser] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const perUsersPage = 9;
 
-export default Earnings
+  // Reset to page 1 when search changes
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [search]);
+
+  // FIXED filtering logic
+  const filterUsers = earningsData.filter(
+    (user) =>
+      user.name.toLowerCase().includes(search.toLowerCase()) ||
+      user.email.toLowerCase().includes(search.toLowerCase()) ||
+      user.type.toLowerCase().includes(search.toLocaleLowerCase())
+  );
+
+  // Pagination
+  const totalPages = Math.ceil(filterUsers.length / perUsersPage);
+  const startIndex = (currentPage - 1) * perUsersPage;
+  const endIndex = startIndex + perUsersPage;
+  const paginatedUsers = filterUsers.slice(startIndex, endIndex);
+
+  const handlePageChange = (event, value) => {
+    setCurrentPage(value);
+  };
+
+  const handleInfoClick = (user) => setSelectedUser(user);
+  const handleCloseModal = () => setSelectedUser(null);
+
+ 
+
+
+
+  return (
+   <div>
+    <div className="mb-8">
+      <EarningsLabel/>
+    </div>
+     <div className="bg-[#F9F9FA] rounded-2xl pb-6">
+      <div className="p-4 md:px-12 flex flex-col md:flex-row gap-3 md:items-center justify-between">
+        <h1 className="text-2xl font-semibold mb-4">Users</h1>
+
+        {/* Search input */}
+        <div className="relative">
+          <input
+            type="text"
+            placeholder="Search"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="p-2 w-72 border bg-white border-gray-300 rounded-lg pl-10 outline-none"
+          />
+          <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500" />
+        </div>
+      </div>
+
+      {/* Table */}
+      <div className="overflow-x-auto">
+        <table className="min-w-full table-auto text-center">
+          <thead className="bg-[#FFDD70]">
+            <tr>
+              <th className="px-4 py-4 ">Serial</th>
+              <th className="px-4 py-2 ">Full Name</th>
+              <th className="px-4 py-2 ">Amount</th>
+              <th className="px-4 py-2 ">Earning Category</th>
+              <th className="px-4 py-2 ">Date</th>
+              <th className="px-4 py-2 ">Action</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {paginatedUsers.length === 0 ? (
+              <tr>
+                <td
+                  colSpan="5"
+                  className="text-center py-6 text-gray-500 text-lg"
+                >
+                  No users found
+                </td>
+              </tr>
+            ) : (
+              paginatedUsers.map((user, index) => (
+                <tr key={index} className="border-b border-gray-200">
+                  <td className="px-4 py-2">{user.id}</td>
+                  <td className="px-4 py-2">{user.name}</td>
+                  <td className="px-4 py-2">${user.amount}</td>
+                  <td className="px-4 py-2">{user.type}</td>
+                  <td className="px-4 py-2">{user.date}</td>
+                  <td className="px-4 py-2">
+                    <button
+                      className="text-Primary cursor-pointer "
+                      onClick={() => handleInfoClick(user)}
+                    >
+                      <CiCircleInfo size={24} />
+                    </button>
+                  </td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
+
+      {/* Pagination footer */}
+      {totalPages > 1 && (
+        <div className="mt-4 flex items-center justify-between px-4">
+          <div className="text-lg text-gray-600">
+            SHOWING {startIndex + 1}–{Math.min(endIndex, filterUsers.length)} OF{" "}
+            {filterUsers.length}
+          </div>
+
+          <Stack spacing={2}>
+            <Pagination
+              count={totalPages}
+              page={currentPage}
+              onChange={handlePageChange}
+              shape="rounded"
+              siblingCount={0}
+              boundaryCount={1}
+              sx={{
+                "& .MuiPaginationItem-root": { color: "#727272" },
+                "& .Mui-selected": {
+                  backgroundColor: "#FFC300 !important",
+                  color: "white",
+                },
+              }}
+            />
+          </Stack>
+        </div>
+      )}
+
+      {selectedUser && (
+        <EariningsDetails user={selectedUser} onClose={handleCloseModal} />
+      )}
+
+    </div>
+   </div>
+  );
+};
+
+export default Earnings;
+
+
