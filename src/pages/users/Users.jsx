@@ -2,15 +2,19 @@ import React, { useState, useEffect } from "react";
 import { FaSearch } from "react-icons/fa";
 import { CiCircleInfo } from "react-icons/ci";
 import { MdBlock } from "react-icons/md";
+import { CgUnblock } from "react-icons/cg";
 import UserDetails from "./UserDetails";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import { users } from "./data";
+import ConfirmationModal from "../../common/ConfirmationModal"; // Import the new modal component
 
 const Users = () => {
   const [search, setSearch] = useState("");
   const [selectedUser, setSelectedUser] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
+  const [openConfirmationModal, setOpenConfirmationModal] = useState(false);
+  const [userAction, setUserAction] = useState(null); // To store the user for block/unblock
   const perUsersPage = 10;
 
   // Reset to page 1 when search changes
@@ -22,7 +26,8 @@ const Users = () => {
   const filterUsers = users.filter(
     (user) =>
       user.name.toLowerCase().includes(search.toLowerCase()) ||
-      user.email.toLowerCase().includes(search.toLowerCase())
+      user.email.toLowerCase().includes(search.toLowerCase()) ||
+      user.block.toLowerCase().includes(search.toLowerCase())
   );
 
   // Pagination
@@ -37,6 +42,19 @@ const Users = () => {
 
   const handleInfoClick = (user) => setSelectedUser(user);
   const handleCloseModal = () => setSelectedUser(null);
+
+  // Handle block/unblock icon click
+  const handleBlockUnblockClick = (user) => {
+    setUserAction(user);
+    setOpenConfirmationModal(true);
+  };
+
+  // Handle confirm action
+  const handleConfirmAction = (user) => {
+    // Perform the block/unblock logic here (just toggle for now)
+    user.block = !user.block;
+    setOpenConfirmationModal(false);
+  };
 
   return (
     <div className="bg-[#F9F9FA] rounded-2xl pb-6">
@@ -88,13 +106,16 @@ const Users = () => {
                   <td className="px-4 py-2">{user.date}</td>
                   <td className="px-4 py-2">
                     <button
-                      className="text-[#138487]"
+                      className="text-[#138487] cursor-pointer"
                       onClick={() => handleInfoClick(user)}
                     >
                       <CiCircleInfo size={24} />
                     </button>
-                    <button className="text-[#138487] ml-2">
-                      <MdBlock size={24} />
+                    <button
+                      className={`ml-2 cursor-pointer ${user.block === true ? "text-red-600" : "text-[#138487]"}`}
+                      onClick={() => handleBlockUnblockClick(user)}
+                    >
+                      {user.block === true ? <MdBlock size={24} /> : <CgUnblock size={26} />}
                     </button>
                   </td>
                 </tr>
@@ -135,6 +156,14 @@ const Users = () => {
       {selectedUser && (
         <UserDetails user={selectedUser} onClose={handleCloseModal} />
       )}
+
+      {/* Confirmation Modal */}
+      <ConfirmationModal
+        isOpen={openConfirmationModal}
+        onClose={() => setOpenConfirmationModal(false)}
+        onConfirm={handleConfirmAction}
+        user={userAction}
+      />
     </div>
   );
 };

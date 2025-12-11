@@ -1,9 +1,10 @@
 import React from "react";
+import { createPortal } from "react-dom";
 import { RxCross2 } from "react-icons/rx";
 
 const UserDetails = ({ user, onClose }) => {
-  return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black/50 bg-opacity-50 z-50 md:ml-[296px] px-4">
+  return createPortal(
+    <div className="fixed inset-0 flex items-center justify-center bg-black/50 bg-opacity-50 z-50   px-4">
       <div className="bg-white  rounded-lg w-[500px]">
         <div className="relative py-4">
           <h2 className="text-xl text-center font-semibold">User Details</h2>
@@ -102,7 +103,8 @@ const UserDetails = ({ user, onClose }) => {
     
         </div>
       </div>
-    </div>
+    </div>,
+      document.body
   );
 };
 
