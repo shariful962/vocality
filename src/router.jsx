@@ -38,8 +38,15 @@ const router = createBrowserRouter([
       { path: "users", element: <Users /> },
       { path: "personality", element: <PersonalityManagement /> },
       { path: "time", element: <TimeManagement /> },
-      { path: "plan", element: <PlanManagement /> },
-      { path: "plan/:id", element: <EditPlan /> },
+      // { path: "plan", element: <PlanManagement /> },
+      // { path: "plan/:id/edit", element: <EditPlan /> },
+      {
+        path: "plan",
+        element: <PlanManagement />,
+        children: [
+          { path: ":id/edit", element: <EditPlan /> }, // nested now
+        ],
+      },
       { path: "configuration", element: <AiConfiguration /> },
       { path: "settings", element: <Settings /> },
       { path: "settings/profile", element: <Profile /> },
