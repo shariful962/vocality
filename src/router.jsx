@@ -17,6 +17,7 @@ import Overview from "./pages/overview/Overview";
 import Profile from "./pages/profile/Profile";
 import ChangePass from "./pages/change password/ChangePass";
 import EditPlan from "./pages/plan management/EditPlan";
+import EditPersonality from "./pages/personality management/EditPersonality";
 
 const router = createBrowserRouter([
   {
@@ -37,6 +38,7 @@ const router = createBrowserRouter([
       { path: "earning", element: <Earnings /> },
       { path: "users", element: <Users /> },
       { path: "personality", element: <PersonalityManagement /> },
+      { path: "edit-personality/:id", element: <EditPersonality /> },
       { path: "time", element: <TimeManagement /> },
       { path: "plan", element: <PlanManagement /> },
       { path: "edit-plan/:id", element: <EditPlan /> },

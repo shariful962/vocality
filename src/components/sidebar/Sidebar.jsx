@@ -4,6 +4,7 @@ import { menuItem } from "../ui/MenuItem";
 import { RxCross1 } from "react-icons/rx";
 import { IoChevronForwardOutline, IoChevronDownOutline } from "react-icons/io5";
 import { AiOutlineLogout } from "react-icons/ai";
+import Icons from "../../assets/image";
 
 const Sidebar = ({ collapsed, mobileOpen, setMobileOpen }) => {
   const navigate = useNavigate();
@@ -49,20 +50,18 @@ const Sidebar = ({ collapsed, mobileOpen, setMobileOpen }) => {
 
         {/* Profile */}
         <div
-          className={`flex items-center justify-start py-6 ${
-            collapsed ? "px-2" : "px-4"
-          }`}
-        >
-          <div className="flex items-center gap-x-3">
-            <img
-              src="https://i.pravatar.cc/150?img=12"
-              alt="Profile"
-              className="w-14 h-14 rounded-full overflow-hidden border-2 border-gray-200"
-            />
-            {!collapsed && <p>ByeWind</p>}
-            {/* <p className="md:hidden">ByeWind</p> */}
-          </div>
-        </div>
+  className={`flex items-center justify-center py-6 transition-all duration-300`}
+>
+  <img
+    src={Icons.navLogo}
+    alt="Logo"
+    className={`
+      transition-all duration-300 object-contain
+      ${collapsed ? "w-10 h-10" : "w-[124px] h-[124px]"}
+      rounded-[20px]
+    `}
+  />
+</div>
 
         {/* Menu */}
         <ul className="mt-5 space-y-2">
