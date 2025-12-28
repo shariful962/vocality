@@ -4,10 +4,10 @@ export const priceData = [
     price: "29.99",
     type: "Personality A",
     features: [
-      "20 minutes per day",
-      "American A mode",
-      "Basic voice quality",
-      "Email support",
+      "Post up to 3 listing",
+      "1 photo upload listing",
+      "Unlimited messaging",
+      "Appointment reminders",
       "Email and community support",
     ],
   },
@@ -16,16 +16,16 @@ export const priceData = [
     price: "29.99",
     type: "Personality B",
     features: [
-      "Unlimited product updates",
-      "Unlimited product updates",
-      "Unlimited product updates",
+      "Post up to 3 listing",
+      "1 photo upload listing",
+      "Unlimited messaging",
       "Appointment reminders",
       "Email and community support",
     ],
   },
   {
     id: 3,
-    price: "49.99",
+    price: "39.99",
     type: "Personality C",
     features: [
       "Unlimited product updates",
@@ -35,7 +35,7 @@ export const priceData = [
       "Email and community support",
     ],
   },
-    {
+  {
     id: 4,
     price: "49.99",
     type: "Personality D",

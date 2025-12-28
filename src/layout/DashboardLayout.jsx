@@ -28,7 +28,7 @@ const DashboardLayout = () => {
           setMobileOpen={setMobileOpen}
         />
 
-        <div className="py-4 px-6 overflow-auto mt-16">
+        <div className="py-4 px-6 overflow-auto mt-20">
           {/* Content */}
           <Outlet />
         </div>
